@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: rag-backend
+    env: node
+    rootDir: backend
+    buildCommand: npm install --legacy-peer-deps && npm run build
+    startCommand: npm start
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: GROQ_MODEL
+        value: llama-3.3-70b-versatile
+      - key: PINECONE_INDEX
+        value: rag-index
+      - key: PINECONE_NAMESPACE
+        value: default-namespace
+      - key: EMBEDDING_MODEL
+        value: BAAI/bge-small-en
+      - key: FRONTEND_URL
+        sync: false
+      - key: GROQ_API_KEY
+        sync: false
+      - key: PINECONE_API_KEY
+        sync: false
